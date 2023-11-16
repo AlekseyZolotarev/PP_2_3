@@ -9,6 +9,8 @@
 <div>
     <th:block th:each="msg : ${messages}">
         <h1 th:text="${msg}"></h1>
+        <br/>
+        <a th:href="@{/users/}" th:text="Users"></a>
     </th:block>
 </div>
 </body>

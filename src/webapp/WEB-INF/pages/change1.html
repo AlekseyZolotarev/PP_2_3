@@ -2,17 +2,17 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Change_user</title>
+    <title>Change1 user</title>
 </head>
 <body>
 
-<p th:text="Edit_user">VALUE</p>
+<p th:text="Edit_user1">VALUE</p>
 
-<form th:method="PATCH" th:action="@{/users/{id}(id=${user.getId()})}" th:object="${user}">
+<form th:method="PATCH" th:action="@{/users/change1/id(id=${user.getId()})}" th:object="${user}">
     <label for="name">Enter name</label>
     <input type="text" th:field="*{name}" id="name"/>
     <br/>
-    <input type="submit" value="Edit!"/>
+    <input type="submit" value="Edit user!"/>
 </form>
 
 </body>

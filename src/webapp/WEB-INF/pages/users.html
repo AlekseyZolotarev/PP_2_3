@@ -6,17 +6,37 @@
 </head>
 <body>
 <div th:each="user : ${users}">
+
     <a th:href="@{/users/{id}(id=${user.getId()})}"
        th:text="'id: ' + ${user.getId() + '. Name: ' + user.getName() + '.'}"
     >user</a>
+
+    <a th:href="@{/users/id(id=${user.getId()})}"
+       th:text="'id: ' + ${user.getId() + '. Name: ' + user.getName() + '.'}"
+    >user</a>
+
     <br/>
+
     <a th:href="@{/users/{id}/change(id=${user.getId()})}" th:text="edit">change</a>
-    <a th:href="@{/users/{id}/delete(id=${user.getId()})}" th:text="delete">delete</a>
+
+    <a th:href="@{/users/change1/id(id=${user.getId()})}" th:text="edit_user">change1</a>
+
+
+    <form th:method="DELETE" th:action="@{/users/{id}(id=${user.getId()})}">
+        <input type="submit" value="Delete"/>
+    </form>
+
+    <form th:method="DELETE" th:action="@{/users/delete/id(id=${user.getId()})}">
+        <input type="submit" value="Delete"/>
+    </form>
+
     <hr>
 </div>
 <div>
-<br/>
-<a th:href="@{/users/new/}" th:text="'Add new user.'"></a>
+    <br/>
+
+    <a th:href="@{/users/new/}" th:text="'Add new user.'"></a>
+
 </div>
 </body>
 </html>

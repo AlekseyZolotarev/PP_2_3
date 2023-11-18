@@ -12,31 +12,42 @@ public class UserDaoImp implements UserDao {
     @PersistenceContext
     private EntityManager entityManager;
 
-
     @Override
-    public List<User> index() {
-        return entityManager.createQuery("select u from User u", User.class)
-                .getResultList();
+    public List<User> getAllUsers(String sql) {
+        return entityManager.createQuery(sql, User.class).getResultList();
     }
 
     @Override
-    public User show(int id) {
-        return entityManager.find(User.class, id);
+    public User getUser(int id) {
+        if (entityManager.find(User.class, id) != null) {
+            return entityManager.find(User.class, id);
+        } else {
+            System.out.println("getUser no User");
+            return null;
+        }
     }
 
     @Override
-    public void save(User user) {
+    public void saveUser(User user) {
         entityManager.persist(user);
     }
 
     @Override
-    public void change(int id, User user) {
-        User user1 = show(id);
-        user1.setName(user.getName());
+    public void editUser(int id, User user) {
+        if (entityManager.find(User.class, id) != null) {
+            User user1 = getUser(id);
+            user1.setName(user.getName());
+        } else {
+            System.out.println("editUser no User");
+        }
     }
 
     @Override
-    public void delete(int id) {
-        entityManager.remove(entityManager.find(User.class, id));
+    public void deleteUser(int id) {
+        if (entityManager.find(User.class, id) != null) {
+            entityManager.remove(entityManager.find(User.class, id));
+        } else {
+            System.out.println("deleteUser no User");
+        }
     }
 }
